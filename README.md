@@ -1,15 +1,5 @@
-# stm32f103rb-template-project
-stm32f103rb template project with basic CMSIS libs setup using Unix Makefiles.
-
-## IMPORTANT
-Replace PREFIX environment variable in Makefile with the path to arm-none-eabi toolchain dir on your machine in order to use a template. You also need st-flash flashing tool to be able to load the binary to microprocessor. 
-
-## Debugging
-To debug follow the steps:
-* run st-util
-* run gdb
-* (in gdb)target extended:4242
-* (in gdb)load <path_to_exe>.elf
-
+# stm32f103rb-max7219-lib
+Small C library to operate on MAX7219 device. Library can be found in lib dir and is only 4Kb in size. No libc dependencies was used apart from <stdint.h>. 
+Example of how to use library is shown in Makefile and main.c.
 
 
