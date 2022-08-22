@@ -16,5 +16,5 @@ jobs:
       - name: publish
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: $(basename $(pwd))-v1.0.0
-          files: $(basename $(pwd)).zip 
+          tag_name: stm32f103rb-max7219-lib-v1.0.0
+          files: *.zip 
