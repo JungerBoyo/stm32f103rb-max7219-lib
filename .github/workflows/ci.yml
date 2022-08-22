@@ -4,15 +4,16 @@ on:
   release: 
     types: [published]
 
-publish-lib:
-  runs-on: ubuntu-22.04
-  steps:
-    - uses: actions/checkout@v3
+jobs: 
+  publish-lib:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
 
-    - name: zip
-      run: zip -r $(basename $(pwd)).zip lib include
+      - name: zip
+        run: zip -r $(basename $(pwd)).zip lib include
 
-    - name: publish
-      uses: softprops/action-gh-release@v1
-      with:
-        files: $(basename $(pwd)).zip 
+      - name: publish
+        uses: softprops/action-gh-release@v1
+        with:
+          files: $(basename $(pwd)).zip 
