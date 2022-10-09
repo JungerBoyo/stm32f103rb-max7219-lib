@@ -10,9 +10,9 @@ OBJECT_FILES  = $(SOURCE_FILES:.c=.o)
 INCLUDE_FILES = max7219.h
 LINKER_SCRIPT = cmsis/STM32F103XB_FLASH.ld
 
-CC 			= $(ARM_TOOLCHAIN_DIR)/arm-none-eabi-gcc
-AR 			= $(ARM_TOOLCHAIN_DIR)/arm-none-eabi-ar
-OBJCOPY = $(ARM_TOOLCHAIN_DIR)/arm-none-eabi-objcopy
+CC 			= $(ARM_TOOLCHAIN_DIR)arm-none-eabi-gcc
+AR 			= $(ARM_TOOLCHAIN_DIR)arm-none-eabi-ar
+OBJCOPY = $(ARM_TOOLCHAIN_DIR)arm-none-eabi-objcopy
 
 CFLAGS  = -O2 -I. -I$(INCLUDE_DIR) -T$(LINKER_SCRIPT) --specs=nosys.specs # general flags and linker script
 CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m3 -mfloat-abi=soft -DSTM32F103xB  # mcpu specific flags and defs

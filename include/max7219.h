@@ -37,12 +37,12 @@
 #define M7219_ADDR_7_ROW 0x0800
 
 /**
- * @brief Addresses data with M7219_ADDR_X_ROW defines. Data size MUST BE <= 8. 
+ * @brief Addresses data with M7219_ADDR_{0, 1, ..., 7}_ROW. Assumes that data points to array of size >= 8
  * 
  * @param data ptr to data
  * @param modules_count count of max7219 modules 
  */
-void addressData(uint16_t* data);
+void M7219_addressDataWithRows(uint16_t* data);
 
 typedef struct M7219Device M7219Device;
 
@@ -75,14 +75,24 @@ typedef struct M7219SPIConfig {
 M7219Device* M7219_init(int transfer, M7219SPIConfig config);
 
 /**
- * @brief Sends data to max7219. Assumes that user want data to be unique for each module. 
+ * @brief Sends data to max7219. Data layout should be |mod0|mod1|mod2|...|modN-1|mod0|mod1|...
  * 
  * @param device        pointer to device created with init
  * @param module_count  count of max7219 modules 
  * @param data          pointer to data 
  * @param size          size of data 
  */
-void M7219_sendData(M7219Device* device, uint16_t module_count, const uint16_t* data, uint16_t size);
+void M7219_sendDataModuleInterleaved(M7219Device* device, uint16_t module_count, const uint16_t* data, uint16_t size);
+
+/**
+ * @brief Sends data to max7219. Data layout should be |mod0[0]|mod0[1]|...|mod0[7]|mod1[0]|mod1[1]|...
+ * 
+ * @param device        pointer to device created with init
+ * @param module_count  count of max7219 modules 
+ * @param data          pointer to data 
+ * @param size          size of data 
+ */
+void M7219_sendDataLinesInterleaved(M7219Device* device, uint16_t module_count, const uint16_t* data, uint16_t size);
 
 /**
  * @brief Sends data to max7219. Assumes that user want data element to be repeated for each module. 
