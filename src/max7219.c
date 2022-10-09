@@ -106,7 +106,7 @@ void M7219_sendDataModuleInterleaved(M7219Device* device, uint16_t module_count,
   }
 }
 
-void M7219_sendDataLinesInterleaved(M7219Device* device, uint16_t module_count, const uint16_t* data, uint16_t size) {
+void m7219_sendDataLinesInterleaved(M7219Device* device, uint16_t module_count, const uint16_t* data, uint16_t size) {
   for (uint16_t m=0; m<8; ++m) {
     (*device->bsrr_register) = device->bit_reset;
 
