@@ -107,12 +107,12 @@ void M7219_sendDataModuleInterleaved(M7219Device* device, uint16_t module_count,
 }
 
 void M7219_sendDataLinesInterleaved(M7219Device* device, uint16_t module_count, const uint16_t* data, uint16_t size) {
-  for (uint16_t m=0; m<module_count; ++m) {
+  for (uint16_t m=0; m<8; ++m) {
     (*device->bsrr_register) = device->bit_reset;
 
-    for (uint16_t i=0; i<8; ++i) {
+    for (uint16_t i=0; i<module_count; ++i) {
       while(((*device->status_register) & SPI_SR_TXE) == 0);
-      (*device->data_register) = data[i + m * 8];
+      (*device->data_register) = data[i * 8 + m];
     }
     
     while(((*device->status_register) & SPI_SR_BSY) != 0);
